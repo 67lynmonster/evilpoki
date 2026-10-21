@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+</head>
+<body>
+<script>
+var src="https://poki.com";
+var title="Google Docs";
+var fav="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico";
+var w=window.open("about:blank","_blank");
+if(!w){document.body.textContent="Allow popups, then reopen this file.";}
+else{try{
+ var d=w.document;
+ var h=d.createElement("html");
+ var head=d.createElement("head");
+ var body=d.createElement("body");
+ var m=d.createElement("meta"); m.charset="utf-8";
+ var ti=d.createElement("title"); ti.textContent=title;
+ var ic=d.createElement("link"); ic.rel="icon"; ic.href=fav;
+ var st=d.createElement("style");
+ st.textContent="html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000}iframe{display:block;width:100%;height:100%;border:0}";
+ var fr=d.createElement("iframe");
+ fr.src=src; fr.allowFullscreen=true; fr.referrerPolicy="no-referrer";
+ fr.setAttribute("sandbox","allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-downloads");
+ fr.setAttribute("allow","fullscreen; autoplay; gamepad; pointer-lock");
+ head.appendChild(m); head.appendChild(ti); head.appendChild(ic); head.appendChild(st);
+ body.appendChild(fr); h.appendChild(head); h.appendChild(body);
+ d.replaceChild(h, d.documentElement);
+ if(!w.document.body || !w.document.body.firstElementChild){throw new Error("no shell");}
+ try{w.opener=null;}catch(e){}
+}catch(e){try{w.close();}catch(e2){} document.body.textContent="Could not create the about:blank page.";}}
+
+</script>
+</body>
+</html>
